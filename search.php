@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Search films</title>
+<title>Search students</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>

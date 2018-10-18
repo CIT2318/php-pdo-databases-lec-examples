@@ -1,6 +1,7 @@
 <?php
 try{
-       $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+       $conn = new PDO('mysql:host=localhost;dbname=simple-examples', 'root', '');
+       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -8,7 +9,7 @@ catch (PDOException $exception)
 }
 
 //select all the students
-$query = "SELECT * FROM students";
+$query = "SELECT last_name, mark FROM students WHERE course LIKE '%Computing%'";
 $resultset = $conn->query($query);
 $students = $resultset->fetchAll();
 $conn=NULL;
@@ -25,12 +26,18 @@ $conn=NULL;
 <body>
 <?php
 
-//loop over the array of students and display their name
-foreach ($students as $student) {
-    echo "<p>";
-    echo $student["first_name"]." ".$student["last_name"];
-    echo "</p>";
+//check to see if there are any results
+if($students){
+	//loop over the array of students and display their name
+	foreach ($students as $student) {
+	    echo "<p>";
+	    echo "{$student['last_name']} {$student['mark']}";
+	    echo "</p>";
+	}
+}else{
+	echo "No records found";
 }
+
 
 ?>
 </body>

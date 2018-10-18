@@ -1,6 +1,7 @@
 <?php
 try{
-       $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -23,16 +24,21 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
+	<p><a href="index.php"><<< Home</a></p>
+	<h1>Update Student Details</h1>
+	<p>Select a student:</p>
+<form action="edit.php" method="POST">
 <?php
 foreach ($students as $student) {
     echo "<p>";
-    echo $student["first_name"]." ".$student["last_name"];
-    //outputs a hyperlink for each student e.g. <a href="edit.php?id=4">edit</a>
-    //each hyperlink has a query string (look back at practical 1) that specifies which student has been clicked on
-    echo " (<a href='edit.php?id=" . $student["id"] . "'>edit</a>)";
+    echo "<label>";
+    //outputs a radio button for each student e.g. <label><input type="radio" name="student" value="5" '="">Sunil Laxman</label>
+    echo "<input type='radio' name='id' value='{$student["id"]}''>";
+    echo "{$student["first_name"]} {$student["last_name"]}</label>";
     echo "</p>";
 }
-
 ?>
+<input type="submit">
+</form>
 </body>
 </html>

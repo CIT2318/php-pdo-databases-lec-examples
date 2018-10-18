@@ -1,6 +1,7 @@
 <?php
 try{
-       $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -8,7 +9,7 @@ catch (PDOException $exception)
 }
 
 //the id from the query string e.g. details.php?id=4
-$studentId=$_GET['id'];
+$studentId=$_POST['id'];
 
 //prepared statement uses the id to select a single student
 $stmt = $conn->prepare("SELECT * FROM students WHERE students.id = :id");
@@ -27,12 +28,14 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
+		<p><a href="edit-list.php"><<< Back to list</a></p>
+	<h1>Edit student details</h1>
 <?php
 //simple validation to see if we found a student
 if($student){
 ?>
-	<h1>Edit student details</h1>
-	<form action="update.php" method="post">
+	
+	<form action="update.php" method="POST">
 	<!-- <input type="hidden"> creates a hidden text field i.e. not visible to the user
 	we use it to store the id number of the selected student -->
 	<input type="hidden" name="id" value="<?php echo $student["id"];?>">

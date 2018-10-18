@@ -1,30 +1,32 @@
 <?php
 try{
-       $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
 	echo "Oh no, there was a problem" . $exception->getMessage();
 }
 
-//This is a simple example we would normally do some form validation here
+//Simple validation
+if(isset($_POST['ids'])){
+	//the ids come from the form as an array e.g. ids=[3,6,7]
+	$ids=$_POST['ids'];
 
-//the id from the query string e.g. details.php?id=4
-$studentId=$_GET['id'];
+	//prepared statement uses the id to delete a single student
+	$stmt = $conn->prepare("DELETE FROM students WHERE students.id = :id");
 
-//prepared statement uses the id to delete a single student
-$stmt = $conn->prepare("DELETE FROM students WHERE students.id = :id");
-$stmt->bindValue(':id',$studentId);
-
-//when we execute the SQL statement the number of affected rows is returned
-$affected_rows = $stmt->execute();
-$conn=NULL;
-if($affected_rows==1){
-    $msg="<p>Deleted student with id of ".$studentId." from the database.</p>";
+	//loop over the array of ids to delete multiple students
+	foreach($ids as $id){
+		$stmt->bindValue(':id',$id);
+		$stmt->execute();
+	}
+	$msg="<p>Successfully deleted students.</p>";
 }else{
-    $msg="<p>There was a problem deleting the record.</p>";
+    $msg="<p>No students selected.</p>";
 }
 $conn=NULL;
+
 ?>
 
 
@@ -35,6 +37,8 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
+	<p><a href="delete-list.php"><<< Back to list</a></p>
+	
 <?php
 echo $msg;
 ?>

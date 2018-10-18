@@ -34,7 +34,7 @@ Basic Examples
 	</li>
 	<li>Delete
 		<ul>
-		<li><a href="edit-list.php">Delete a student</a></li>
+		<li><a href="delete-list.php">Delete a student</a></li>
 		</ul>
 	</li>
 </li>

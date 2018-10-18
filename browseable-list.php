@@ -1,6 +1,7 @@
 <?php
 try{
        $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -23,17 +24,25 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
+	<p><a href="index.php"><<< Home</a></p>
+	<h1>A Browseable List</h1>
 <?php
-foreach ($students as $student) {
-    echo "<p>";
-    //outputs a hyperlink for each student e.g. <a href="details.php?id=4">Yousef Miandad</a>
-    //each hyperlink has a query string (look back at practical 1) that specifies which student has been clicked on
-    echo "<a href='details.php?id=" . $student["id"] . "'>";
-    echo $student["first_name"]." ".$student["last_name"];
-	echo "</a>";
-    echo "</p>";
-}
 
+//check to see if there are any results
+if($students){
+	//loop over the array of students and display their name
+	foreach ($students as $student) {
+	    echo "<p>";
+	    //outputs a hyperlink for each student e.g. <a href="details.php?id=4">Yousef Miandad</a>
+	    //each hyperlink has a query string (look back at practical 1) that specifies which student has been clicked on
+	    echo "<a href='details.php?id={$student["id"]}'>";
+	    echo "{$student['first_name']} {$student['last_name']}";
+		echo "</a>";
+	    echo "</p>";
+	}
+}else{
+	echo "No records found";
+}
 ?>
 </body>
 </html>

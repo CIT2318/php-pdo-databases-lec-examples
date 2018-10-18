@@ -27,6 +27,8 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
+<p><a href="browseable-list.php"><<< Back to list</a></p>
+<h1>A Details View Example</h1>
 <?php
 
 //simple validation to see if we found a student

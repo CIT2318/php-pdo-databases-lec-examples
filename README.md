@@ -14,7 +14,7 @@ The repository contains basic PDO CRUD examples.
     * Update
         * edit-list.php (Edit student details)
     * Delete
-        * delete-list.php (Delete a student)
+        * delete-list.php (Delete students)
 
 If you want to run the examples you will need to:-
 

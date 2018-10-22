@@ -9,7 +9,7 @@ catch (PDOException $exception)
 }
 
 //select all the students
-$query = "SELECT last_name, mark FROM students WHERE course LIKE '%Computing%'";
+$query = "SELECT first_name, last_name, course FROM students";
 $resultset = $conn->query($query);
 $students = $resultset->fetchAll();
 $conn=NULL;
@@ -30,9 +30,7 @@ $conn=NULL;
 if($students){
 	//loop over the array of students and display their name
 	foreach ($students as $student) {
-	    echo "<p>";
-	    echo "{$student['last_name']} {$student['mark']}";
-	    echo "</p>";
+	    echo "<p>{$student['first_name']} {$student['last_name']} {$student['course']}</p>";
 	}
 }else{
 	echo "No records found";

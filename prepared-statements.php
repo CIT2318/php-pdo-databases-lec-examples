@@ -13,7 +13,7 @@ catch (PDOException $exception)
 $query="SELECT * FROM students WHERE last_name=:lastName";
 
 $prep_stmt=$conn->prepare($query);
-$prep_stmt->bindValue(':lastName','Laxman');
+$prep_stmt->bindValue(':lastName','Hutton');
 $prep_stmt->execute();
 $student=$prep_stmt->fetch();
 

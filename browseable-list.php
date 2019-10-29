@@ -24,8 +24,8 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
-	<p><a href="index.php"><<< Home</a></p>
-	<h1>A Browseable List</h1>
+<p><a href="index.php"><<< Home</a></p>
+<h1>A Browseable List</h1>
 <?php
 
 //check to see if there are any results
@@ -34,7 +34,7 @@ if($students){
 	foreach ($students as $student) {
 	    echo "<p>";
 	    //outputs a hyperlink for each student e.g. <a href="details.php?id=4">Yousef Miandad</a>
-	    //each hyperlink has a query string (look back at practical 1) that specifies which student has been clicked on
+	    //each hyperlink has a query string (look back at practical 2) that specifies which student has been clicked on
 	    echo "<a href='details.php?id={$student["id"]}'>";
 	    echo "{$student['first_name']} {$student['last_name']}";
 		echo "</a>";

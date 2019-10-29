@@ -25,8 +25,8 @@ $students = $stmt->fetchAll();
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
-		<p><a href="search.php"><<< Back to search again</a></p>
-	<h1>Search Results</h1>
+<p><a href="search.php"><<< Back to search again</a></p>
+<h1>Search Results</h1>
 <?php
 //check to see if there are any results
 if($students){

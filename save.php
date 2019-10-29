@@ -41,7 +41,7 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
-	 <p><a href="index.php"><<< Home</a></p>
+<p><a href="index.php"><<< Home</a></p>
 
 <?php
 echo $msg;
